@@ -56,13 +56,52 @@ class War {
         this.saxonArmy.push(saxon);
     }
     vikingAttack(){
-        const chosenSoldier = (soldierArray) {
-            return Math.floor(Math.random() * (solsierArray.length);
-          }
-        this.saxonArmy[chosenSoldier(this.saxonArmy)].receiveDamage(this.vikingArmy[chosenSoldier(this.vikingArmy)].strength);
+        const chosenSoldierIndex = (soldierArray) => Math.floor(Math.random() * (soldierArray.length));
+
+        const chosenSaxon = this.saxonArmy[chosenSoldierIndex(this.saxonArmy)];
+
+        const chosenVikingStrength = this.vikingArmy[chosenSoldierIndex(this.vikingArmy)].strength;
+
+        const attackResult = chosenSaxon.receiveDamage(chosenVikingStrength);
+        
+        if(chosenSaxon.health < chosenVikingStrength){
+            this.saxonArmy.splice(chosenSoldierIndex, 1);
+        } else {}
+        
+        return attackResult;
     }
-    saxonAttack(){}
+    saxonAttack(){
+        const chosenSoldierIndex = (soldierArray) => Math.floor(Math.random() * (soldierArray.length));
+
+        const chosenViking = this.vikingArmy[chosenSoldierIndex(this.vikingArmy)];
+
+        const chosenSaxonStrength = this.saxonArmy[chosenSoldierIndex(this.saxonArmy)].strength;
+
+        const attackResult = chosenViking.receiveDamage(chosenSaxonStrength);
+        
+        if(chosenViking.health < chosenSaxonStrength){
+            this.vikingArmy.splice(chosenSoldierIndex, 1);
+        } else {}
+        
+        return attackResult;
+    }
     showStatus(){}
 }
 
-Math.floor(Math.random())
+const newWar = new War;
+
+const saxon1 = new Saxon(100, 50);
+const saxon2 = new Saxon(50, 25);
+const viking1 = new Viking('John', 200, 50);
+const viking2 = new Viking('Hele', 240, 30);
+console.log(newWar);
+
+newWar.addSaxon(saxon1);
+newWar.addSaxon(saxon2);
+newWar.addViking(viking1);
+newWar.addViking(viking2);
+
+console.log(newWar)
+
+newWar.vikingAttack();
+console.log(newWar);
